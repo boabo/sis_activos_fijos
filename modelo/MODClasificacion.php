@@ -121,6 +121,45 @@ class MODClasificacion extends MODbase{
 		//Devuelve la respuesta
 		return $this->respuesta;
 	}
+
+	function reporteDepreciacion(){
+		//Definicion de variables para ejecucion del procedimientp
+		$this->setCount(false);
+		$this->procedimiento='af.f_reportes';
+		$this->transaccion='AF_REP_SEL';
+		$this->tipo_procedimiento='SEL';//tipo de transaccion
+
+
+		$this->setParametro('fecha_hasta','fecha_hasta','date');
+		/*$this->setParametro('estado','estado','varchar');
+        $this->setParametro('tipo','tipo','varchar');
+        $this->setParametro('id_finalidad','id_finalidad','int4');*/
+
+
+		//Definicion de la lista del resultado del query
+		$this->captura('fecha_reporte','text');
+		$this->captura('a_favor','varchar');
+		$this->captura('detalle','text');
+		$this->captura('nro_liquidacion','varchar');
+		$this->captura('nro_comprobante','varchar');
+		$this->captura('comprobante_sigma','varchar');
+		$this->captura('nro_cheque','integer');
+		$this->captura('importe_deposito','text');
+		$this->captura('importe_cheque','text');
+		$this->captura('saldo','text');
+		$this->captura('total_debe','text');
+		$this->captura('total_haber','text');
+		$this->captura('indice','numeric');
+		$this->captura('fecha','date');
+
+		//Ejecuta la instruccion
+		$this->armarConsulta();
+		$this->ejecutarConsulta();
+
+		//var_dump($this->respuesta); exit;
+		//Devuelve la respuesta
+		return $this->respuesta;
+	}
 			
 }
 ?>
